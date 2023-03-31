@@ -2,6 +2,8 @@
 import './App.css'
 import PokemonCard from './components/PokemonCard'
 import { useState } from "react";
+import { useEffect } from "react";
+import  NavBar  from './components/NavBar'
 
 const pokemonList = [
   {
@@ -30,26 +32,26 @@ const pokemonList = [
 ];
 
 function App() {
+  useEffect(
+    () =>  {
+      alert("hello pokemon trainer :)")
+      // ton code à exécuter
+    }, 
+    []
+ );
+   
   const [count, setCount] = useState(0);
-
-  const handleClickNext = () => {
-    setCount(count + 1)
-  }
-  const handleClickPrev = () => {
-    setCount(count - 1)
-  }
+return(
 
   
+  <div>
+           <PokemonCard name={pokemonList[count].name} imgSrc={pokemonList[count].imgSrc}/>
+           <NavBar count={count} setCount={setCount} />
 
-  return (
-      <div>
-       <PokemonCard name={pokemonList[count].name} imgSrc={pokemonList[count].imgSrc}/>
-       <button onClick={handleClickPrev}>prev</button>
-       <button onClick={handleClickNext}>next</button>
-    </div>
-  )
-}
+  </div>
+)
 
+  }
 
 
 export default App
