@@ -41,9 +41,10 @@ function App() {
  );
    
   const [count, setCount] = useState(0);
-return(
 
+  pokemonList[count].name==="pikachu"?alert("pika pikachu !!!"):""
   
+return(
   <div>
            <PokemonCard name={pokemonList[count].name} imgSrc={pokemonList[count].imgSrc}/>
            <NavBar count={count} setCount={setCount} />
