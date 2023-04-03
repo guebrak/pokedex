@@ -1,58 +1,75 @@
-
+import { useEffect, useState } from 'react'
 import './App.css'
-import PokemonCard from './components/PokemonCard'
-import { useState } from "react";
-import { useEffect } from "react";
-import  NavBar  from './components/NavBar'
+import PokemonCard from './components/PokemonCard';
+import NavBar from './components/NavBar';
+
+
 
 const pokemonList = [
   {
+    index: "1",
     name: "bulbasaur",
     imgSrc:
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
   },
   {
+    index: "2",
     name: "charmander",
     imgSrc:
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
   },
   {
+    index: "3",
     name: "squirtle",
     imgSrc:
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
   },
   {
+    index: "4",
     name: "pikachu",
     imgSrc:
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-  },
-  {
-    name: "mew",
+    },
+    {
+      index: "5",
+      name: "mew",
+      imgSrc:
+        "https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png",
   },
 ];
 
+
 function App() {
+
   useEffect(
-    () =>  {
-      alert("hello pokemon trainer :)")
-      // ton code à exécuter
-    }, 
-    []
- );
-   
-  const [count, setCount] = useState(0);
+    () => {
+      alert("Hello pokemon trainer :)");
 
-  pokemonList[count].name==="pikachu"?alert("pika pikachu !!!"):""
-  
-return(
-  <div>
-           <PokemonCard name={pokemonList[count].name} imgSrc={pokemonList[count].imgSrc}/>
-           <NavBar count={count} setCount={setCount} />
 
-  </div>
-)
-
+    }, []
+  );
+  const handlePokemonClick = (index) => {
+    setCount(index);
   }
+  const [count, setCount] = useState(0);
+  pokemonList[count].name === "pikachu" ? alert("pika pika pikachu !!!") : ""
+
+  return (
+    <div className='masterDiv'>
+      <PokemonCard name={pokemonList[count].name} imgSrc={pokemonList[count].imgSrc} />
+
+      <div className='btnContainer'>
+        {pokemonList.map((pokemon, index) => (
+          <button className='btnIndexSelector' key={pokemon.index} onClick={() => handlePokemonClick(index)}>{pokemon.name}</button>
+        ))}
+
+
+
+
+      </div >
+    </div>
+  )
+}
 
 
 export default App
